@@ -19,6 +19,14 @@
             <id>nexus</id>
             <name>Team Nexus Repository</name>
             <url>http://nexus.51alf.cn/nexus/content/groups/public</url>
+            <!-- Release版本则代表稳定的版本 -->
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <!-- Snapshot版本代表不稳定、尚处于开发中的版本，默认关闭，需要手动启动 -->
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
         </repository>
     </repositories>
 
