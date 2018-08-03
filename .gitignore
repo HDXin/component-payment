@@ -1,0 +1,11 @@
+# Compiled class file
+target/*
+
+# Log file
+logs/*
+
+# BlueJ files
+.idea/*
+
+#
+component-payment.iml
