@@ -13,12 +13,6 @@ import top.atstudy.component.payment.config.vo.req.PaymentConfigReq;
 import top.atstudy.component.payment.config.vo.resp.PaymentConfigResp;
 
 /**
- * smart-mybatis-spring-boot-starter
- * <p>
- * Description :
- * <p>
- * Creator :
- *
  * @author Sudao @ HuangDexin
  * @email : huangdexin@kuaicto.com or 735513870@qq.com
  * @date: 2017/11/15
@@ -26,11 +20,11 @@ import top.atstudy.component.payment.config.vo.resp.PaymentConfigResp;
  * =========================================
  * <p>
  * Contributors :
- * Tim Zhang - 2017/11/15 下午1:27
+ * harley - 2017/11/15 下午1:27
  */
 @RestController
-@RequestMapping("/api/admin/config")
-public class PaymentConfigController extends BasicController {
+@RequestMapping("/payment/admin/config")
+public class AdminPaymentController extends BasicController {
     /******* Fields Area *******/
 
     @Autowired

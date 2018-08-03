@@ -25,8 +25,8 @@ import java.lang.reflect.InvocationTargetException;
  * Time: 12:11
  */
 @RestController
-@RequestMapping("/api/payment/")
-public class PaymentController extends BasicController{
+@RequestMapping("/payment/consumer")
+public class ConsumerPaymentController extends BasicController{
 
     @Autowired
     private IPaymentConfigService paymentConfigService;
