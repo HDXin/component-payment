@@ -1,5 +1,7 @@
 package top.atstudy.component.payment.api.callback.controller;
 
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import top.atstudy.component.base.controller.BasicController;
@@ -15,21 +17,21 @@ import top.atstudy.component.payment.config.vo.req.PaymentConfigReq;
  * Contributors :
  * harley - 2017/11/15 下午1:27
  */
-@RestController
+@Controller
 @RequestMapping("/payment/callback")
 public class CallbackPaymentController extends BasicController {
 
 
     /**
      * 微信服务器回调
-     * @param req
      * @return
      */
+    @ResponseBody
     @Transactional(rollbackFor = Exception.class)
-    @PostMapping("/notify")
-    public String notify(@RequestBody PaymentConfigReq req){
+    @PostMapping(value = "/notify", produces = MediaType.TEXT_XML_VALUE)
+    public ParamsReq callback(@RequestBody ParamsReq req){
 
-        return "SUCCESS";
+        return req;
     }
 
 }

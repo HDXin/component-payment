@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.lang.Nullable;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+import top.atstudy.component.filter.ReusableHttpServletResponseWrapper;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
@@ -51,7 +52,9 @@ public class LogInterceptor implements HandlerInterceptor {
                 stringBuilder.append(request.getContentLength() / 1000).append("KB");
             }
 
-            if (request.getContentType().contains("application/json") || request.getContentType().contains("application/xml")) {
+            if (request.getContentType().contains("application/json")
+                    || request.getContentType().contains("application/xml")
+                    || request.getContentType().contains("Text/xml")) {
                 String requestBody = getBody(request);
                 stringBuilder.append(requestBody);
             }
@@ -68,7 +71,7 @@ public class LogInterceptor implements HandlerInterceptor {
         System.out.println("---------------- <<Response Body>> ------------------------");
         this.logger.info("<-- <<Response-Http-Status>> : {}", response.getStatus());
         this.logger.info("<-- <<Response-Content-Type>> : {}", response.getContentType());
-//        this.logger.info("<-- {}", ((ReusableHttpServletResponseWrapper)response).getResponseData("utf-8"));
+        this.logger.info("<-- {}", new String(((ReusableHttpServletResponseWrapper)response).toByteArray(), response.getCharacterEncoding()));
         System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
     }
 

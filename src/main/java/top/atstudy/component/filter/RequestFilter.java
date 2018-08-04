@@ -32,7 +32,7 @@ public class RequestFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         ReusableHttpServletRequestWrapper requestWrapper = new ReusableHttpServletRequestWrapper(request);
         HttpServletResponse response = (HttpServletResponse) servletResponse;
-//        ReusableHttpServletResponseWrapper responseWrapper = new ReusableHttpServletResponseWrapper(response);
+        ReusableHttpServletResponseWrapper responseWrapper = new ReusableHttpServletResponseWrapper(response);
 
         //解决跨域问题
 //        response.setHeader("Access-Control-Allow-Origin", "*");
@@ -46,7 +46,7 @@ public class RequestFilter implements Filter {
 //            return;
 //        }
 
-        filterChain.doFilter(requestWrapper, response);
+        filterChain.doFilter(requestWrapper, responseWrapper);
     }
 
     @Override
