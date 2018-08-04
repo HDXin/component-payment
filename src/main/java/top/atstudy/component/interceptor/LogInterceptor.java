@@ -54,7 +54,9 @@ public class LogInterceptor implements HandlerInterceptor {
 
             if (request.getContentType().contains("application/json")
                     || request.getContentType().contains("application/xml")
-                    || request.getContentType().contains("Text/xml")) {
+                    || request.getContentType().contains("Text/xml")
+                    || request.getContentType().contains("text/xml")
+                    ) {
                 String requestBody = getBody(request);
                 stringBuilder.append(requestBody);
             }
