@@ -5,7 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import top.atstudy.component.base.controller.BasicController;
-import top.atstudy.component.payment.config.vo.req.PaymentConfigReq;
+import top.atstudy.sdk.payment.wechat.vo.PayNotifyReq;
+import top.atstudy.sdk.payment.wechat.vo.PayNotifyResp;
 
 /**
  * @author Sudao @ HuangDexin
@@ -21,7 +22,6 @@ import top.atstudy.component.payment.config.vo.req.PaymentConfigReq;
 @RequestMapping("/payment/callback")
 public class CallbackPaymentController extends BasicController {
 
-
     /**
      * 微信服务器回调
      * @return
@@ -29,9 +29,16 @@ public class CallbackPaymentController extends BasicController {
     @ResponseBody
     @Transactional(rollbackFor = Exception.class)
     @PostMapping(value = "/notify", produces = MediaType.TEXT_XML_VALUE)
-    public ParamsReq callback(@RequestBody ParamsReq req){
+    public PayNotifyResp callback(@RequestBody PayNotifyReq req){
 
-        return req;
+        PayNotifyResp resp = new PayNotifyResp();
+        if("SUCCESS".equals(req.getReturn_code())
+                && "SUCCESS".equals(req.getResult_code())){
+            resp.setReturn_code("SUCCESS");
+            resp.setResult_code("OK");
+        }
+
+        return resp;
     }
 
 }
