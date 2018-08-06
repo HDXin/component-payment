@@ -2,10 +2,9 @@ package top.atstudy.component.payment.config.dao.dto;
 
 import top.atstudy.component.base.BaseDTO;
 import top.atstudy.component.base.enums.EnumDeleted;
-
 import java.io.Serializable;
 
-public class PaymentConfigDTO extends BaseDTO implements Serializable {
+public class ConfigInfoDTO extends BaseDTO implements Serializable {
     private Long id;
 
     private String projectName;

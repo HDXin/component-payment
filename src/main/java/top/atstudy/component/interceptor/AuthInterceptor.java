@@ -10,13 +10,11 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import top.atstudy.component.auth.vo.SessionUser;
 import top.atstudy.component.base.config.AuthToken;
 import top.atstudy.component.base.config.Constants;
-import top.atstudy.component.base.config.SelfConfig;
 import top.atstudy.component.base.util.BeanUtils;
 import top.atstudy.component.exception.APIException;
 import top.atstudy.component.payment.base.enums.Unauthorized;
-import top.atstudy.component.payment.config.dao.IPaymentConfigDao;
-import top.atstudy.component.payment.config.dao.dto.PaymentConfigDTO;
-
+import top.atstudy.component.payment.config.dao.IConfigInfoDao;
+import top.atstudy.component.payment.config.dao.dto.ConfigInfoDTO;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -34,7 +32,7 @@ public class AuthInterceptor implements HandlerInterceptor {
     private static final Logger logger = LoggerFactory.getLogger(AuthInterceptor.class);
 
     @Autowired
-    private IPaymentConfigDao paymentConfigDao;
+    private IConfigInfoDao configInfoDao;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -65,16 +63,16 @@ public class AuthInterceptor implements HandlerInterceptor {
 
         //判断是否有效
         if (AuthToken.isActive(authToken)) {
-            if (paymentConfigDao == null) {//解决service为null无法注入问题
+            if (configInfoDao == null) {//解决service为null无法注入问题
                 BeanFactory factory = WebApplicationContextUtils.getRequiredWebApplicationContext(request.getServletContext());
-                paymentConfigDao = factory.getBean(IPaymentConfigDao.class);
-                if(paymentConfigDao == null){
+                configInfoDao = factory.getBean(IConfigInfoDao.class);
+                if(configInfoDao == null){
                     logger.info("paymentConfigDao is null ... ");
                     return false;
                 }
             }
             //获取项目配置
-            PaymentConfigDTO target = paymentConfigDao.getById(authToken.userId);
+            ConfigInfoDTO target = configInfoDao.getById(authToken.userId);
             if(target == null || target.getId() == null){
                 logger.info("paymentConfig is null ... ");
                 return false;

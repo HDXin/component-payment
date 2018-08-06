@@ -19,7 +19,8 @@ import top.atstudy.component.base.enums.NumberCodeEnumTypeHandler;
 @ServletComponentScan
 @EnableTransactionManagement
 @MapperScan(basePackages = {
-        "top.atstudy.component.payment.config.dao.mapper"
+        "top.atstudy.component.payment.config.dao.mapper",
+        "top.atstudy.component.payment.setting.dao.mapper"
 })
 public class SpringBoot {
     private static final Logger logger = LoggerFactory.getLogger(SpringBoot.class);

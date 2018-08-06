@@ -1,7 +1,7 @@
 package top.atstudy.component.auth.vo;
 
 import top.atstudy.component.base.IOperatorAware;
-import top.atstudy.component.payment.config.dao.dto.PaymentConfigDTO;
+import top.atstudy.component.payment.config.dao.dto.ConfigInfoDTO;
 
 /**
  * Created with IntelliJ IDEA.
@@ -10,7 +10,7 @@ import top.atstudy.component.payment.config.dao.dto.PaymentConfigDTO;
  * Date: 2018-08-01
  * Time: 11:15
  */
-public class SessionUser extends PaymentConfigDTO implements IOperatorAware{
+public class SessionUser extends ConfigInfoDTO implements IOperatorAware{
 
     @Override
     public Long getOperatorId() {

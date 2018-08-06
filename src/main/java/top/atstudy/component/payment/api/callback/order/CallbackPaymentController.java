@@ -1,4 +1,4 @@
-package top.atstudy.component.payment.api.callback.controller;
+package top.atstudy.component.payment.api.callback.order;
 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -10,7 +10,7 @@ import top.atstudy.sdk.payment.wechat.vo.PayNotifyResp;
 
 /**
  * @author Sudao @ HuangDexin
- * @email : huangdexin@kuaicto.com or 735513870@qq.com
+ * @email : 735513870@qq.com
  * @date: 2017/11/15
  * @time: 下午1:27
  * =========================================

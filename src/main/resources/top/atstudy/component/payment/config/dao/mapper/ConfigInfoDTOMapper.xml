@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="top.atstudy.component.payment.config.dao.mapper.PaymentConfigDTOMapper">
-  <resultMap id="BaseResultMap" type="top.atstudy.component.payment.config.dao.dto.PaymentConfigDTO">
+<mapper namespace="top.atstudy.component.payment.config.dao.mapper.ConfigInfoDTOMapper">
+  <resultMap id="BaseResultMap" type="top.atstudy.component.payment.config.dao.dto.ConfigInfoDTO">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="project_name" jdbcType="VARCHAR" property="projectName" />
     <result column="payment_type" jdbcType="VARCHAR" property="paymentType" />
@@ -87,13 +87,13 @@
     payment_key, token, display_order, version, deleted, create_user_id, create_user_name, 
     create_time, update_user_id, update_user_name, update_time, last_update
   </sql>
-  <select id="selectByExample" parameterType="top.atstudy.component.payment.config.dao.dto.PaymentConfigDTOExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="top.atstudy.component.payment.config.dao.dto.ConfigInfoDTOExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from payment_config
+    from config_info
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -112,24 +112,24 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from payment_config
+    from config_info
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from payment_config
+    delete from config_info
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="top.atstudy.component.payment.config.dao.dto.PaymentConfigDTOExample">
-    delete from payment_config
+  <delete id="deleteByExample" parameterType="top.atstudy.component.payment.config.dao.dto.ConfigInfoDTOExample">
+    delete from config_info
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="top.atstudy.component.payment.config.dao.dto.PaymentConfigDTO">
+  <insert id="insert" parameterType="top.atstudy.component.payment.config.dao.dto.ConfigInfoDTO">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into payment_config (project_name, payment_type, content, 
+    insert into config_info (project_name, payment_type, content, 
       appid, appsecret, mch_id, 
       notify_url, trade_type, payment_key, 
       token, display_order, version, 
@@ -144,11 +144,11 @@
       #{createTime,jdbcType=TIMESTAMP}, #{updateUserId,jdbcType=BIGINT}, #{updateUserName,jdbcType=VARCHAR}, 
       #{updateTime,jdbcType=TIMESTAMP}, #{lastUpdate,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="top.atstudy.component.payment.config.dao.dto.PaymentConfigDTO">
+  <insert id="insertSelective" parameterType="top.atstudy.component.payment.config.dao.dto.ConfigInfoDTO">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into payment_config
+    insert into config_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="projectName != null">
         project_name,
@@ -274,14 +274,14 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="top.atstudy.component.payment.config.dao.dto.PaymentConfigDTOExample" resultType="java.lang.Long">
-    select count(*) from payment_config
+  <select id="countByExample" parameterType="top.atstudy.component.payment.config.dao.dto.ConfigInfoDTOExample" resultType="java.lang.Long">
+    select count(*) from config_info
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update payment_config
+    update config_info
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
@@ -352,7 +352,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update payment_config
+    update config_info
     set id = #{record.id,jdbcType=BIGINT},
       project_name = #{record.projectName,jdbcType=VARCHAR},
       payment_type = #{record.paymentType,jdbcType=VARCHAR},
@@ -378,8 +378,8 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="top.atstudy.component.payment.config.dao.dto.PaymentConfigDTO">
-    update payment_config
+  <update id="updateByPrimaryKeySelective" parameterType="top.atstudy.component.payment.config.dao.dto.ConfigInfoDTO">
+    update config_info
     <set>
       <if test="projectName != null">
         project_name = #{projectName,jdbcType=VARCHAR},
@@ -444,8 +444,8 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="top.atstudy.component.payment.config.dao.dto.PaymentConfigDTO">
-    update payment_config
+  <update id="updateByPrimaryKey" parameterType="top.atstudy.component.payment.config.dao.dto.ConfigInfoDTO">
+    update config_info
     set project_name = #{projectName,jdbcType=VARCHAR},
       payment_type = #{paymentType,jdbcType=VARCHAR},
       content = #{content,jdbcType=VARCHAR},
